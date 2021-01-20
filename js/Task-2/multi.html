@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <title>Document</title>
+</head>
+<body>
+  
+    <div class="container mycontainer mt-5">
+        <h2 class="fs-3">Multiplication Table</h2>
+        <div class="row g-3 align-items-center mt-3">
+            <div class="col-auto">
+                <input type="text" id="integer" class="form-control" aria-describedby="passwordHelpInline" placeholder="Enter integer">
+            </div>
+            <div class="col-auto">
+                <i class="fas fa-times fa-2x"></i>
+            </div>
+            <div class="col-auto">
+                <input type="text" id="range" class="form-control" aria-describedby="passwordHelpInline" placeholder="Enter range">
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-success" onclick="multi()">Submit</button>
+                <span class="text-danger px-4" id="message"></span>
+              </div>
+          </div>
+        <div class="row myrow mt-5">
+            <div class="col-md-8 px-5">
+                <table class="table table-secondary shadow-lg p-3 mb-5 bg-white rounded">
+                    <tbody id="table">
+                        
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+    
+  <style>
+      .mycontainer{
+          margin-top: 120px !important;
+      }
+      
+  </style>
+
+<script>
+
+function multi(){
+
+const tab=document.getElementById("table");
+const number = parseInt(document.getElementById("integer").value);
+
+// take range input from the user
+const range = parseInt(document.getElementById("range").value);
+
+const message=document.getElementById("message");
+
+ //creating a multiplication table
+ try {
+    if(number == "" || range==""||isNaN(number) || isNaN(range) || number == "0" || range == "0"){
+        throw "is invalid";
+    }else{
+        calc();
+    }
+    
+  }
+  catch(err) {
+    message.innerHTML = "Input " + err;
+  }
+ 
+  function calc(){
+    for(let i = 1; i <= range; i++) {
+     const result = i * number;
+     tab.innerHTML +=` <tr> 
+                        <td>${number}</td>     
+                        <td>&#10006;</td>    
+                        <td>${i}</td> 
+                        <td>${result}</td>      
+                      </tr>`;
+            
+     console.log(`${number} * ${i} = ${result}`);
+ }
+
+}
+
+
+
+}
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>
